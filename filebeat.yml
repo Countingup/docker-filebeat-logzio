@@ -1,0 +1,23 @@
+############################# Filebeat #####################################
+filebeat.prospectors:
+  - type: log
+    paths:
+      - /var/lib/docker/containers/*/*.log
+    fields:
+      logzio_codec: json
+      token: ${LOGZIO_TOKEN}
+      document_type: docker_logs
+    fields_under_root: true
+    processors:
+     - add_docker_metadata: ~
+     - drop_event:
+         when:
+           or:
+             - contains:
+                 docker.container.image: "filebeat-logzio"
+             - contains:
+                 docker.container.image: "rancher/net"
+
+output.logstash:
+  hosts: ["listener-eu.logz.io:5015"]
+  ssl.certificate_authorities: ['/usr/share/filebeat/COMODORSADomainValidationSecureServerCA.crt']
