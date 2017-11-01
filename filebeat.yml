@@ -21,6 +21,17 @@ filebeat.prospectors:
                      docker.container.name: "r-scheduler-scheduler"
                  - contains:
                      message: "Updating resource pool"
+  - type: log
+    paths:
+      # This seems to capture everything of interest on RancherOS
+      - /var/log/syslog
+    fields:
+      logzio_codec: plain
+      token: ${LOGZIO_TOKEN}
+      document_type: system_logs
+    fields_under_root: true
+    processors:
+     - add_cloud_metadata: ~
 
 logging.level: warning
 
