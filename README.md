@@ -12,7 +12,7 @@ The [filebeat](https://www.elastic.co/products/beats/filebeat) log shipper, conf
 
 Expects a Logz.io token in the environment variable `LOGZIO_TOKEN`. Expects to find the hosts docker socket at `/var/run/docker.sock` and the hosts docker logs at `/var/lib/docker/containers`. Runs filebeat as the root user so that it has access to these (the log files are owned by root).
 
-Customise filebeat.yml to suit your own needs (we exclude some logs by container image name).
+Customise filebeat.yml to suit your own needs, the version in the repo excludes some log events by container name and log content (for noisy Rancher components).
 
 ## Build locally
 

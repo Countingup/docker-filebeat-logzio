@@ -1,4 +1,3 @@
-############################# Filebeat #####################################
 filebeat.prospectors:
   - type: log
     paths:
@@ -13,10 +12,16 @@ filebeat.prospectors:
      - drop_event:
          when:
            or:
+             # Drop noisiest Rancher logs, we have the last 50MB on the hosts anyway
              - contains:
-                 docker.container.image: "filebeat-logzio"
-             - contains:
-                 docker.container.image: "rancher/net"
+                 docker.container.name: "r-ipsec-ipsec-router"
+             - and:
+                 - contains:
+                     docker.container.name: "r-scheduler-scheduler"
+                 - contains:
+                     message: "Updating resource pool"
+
+logging.metrics.period: 5m
 
 output.logstash:
   hosts: ["listener-eu.logz.io:5015"]
