@@ -8,6 +8,7 @@ filebeat.prospectors:
       document_type: docker_logs
     fields_under_root: true
     processors:
+     - add_cloud_metadata: ~
      - add_docker_metadata: ~
      - drop_event:
          when:
