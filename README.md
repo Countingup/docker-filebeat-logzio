@@ -18,7 +18,7 @@ Customise filebeat.yml to suit your own needs, the version in the repo excludes 
 
 ```
 $ cd docker-filebeat-logzio
-$ docker build -t filebeat-logzio .
+$ docker build -t countingup/filebeat-logzio .
 ```
 
 ## Run (will pull from dockerhub)

@@ -21,7 +21,7 @@ filebeat.prospectors:
                  - contains:
                      message: "Updating resource pool"
 
-logging.metrics.period: 5m
+logging.level: warning
 
 output.logstash:
   hosts: ["listener-eu.logz.io:5015"]
