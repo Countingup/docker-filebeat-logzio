@@ -5,7 +5,7 @@ filebeat.prospectors:
     fields:
       logzio_codec: json
       token: ${LOGZIO_TOKEN}
-      document_type: docker_logs
+      type: docker_logs
     fields_under_root: true
     processors:
      - add_cloud_metadata: ~
@@ -28,7 +28,7 @@ filebeat.prospectors:
     fields:
       logzio_codec: plain
       token: ${LOGZIO_TOKEN}
-      document_type: system_logs
+      type: system_logs
     fields_under_root: true
     processors:
      - add_cloud_metadata: ~
