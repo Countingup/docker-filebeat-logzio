@@ -24,5 +24,9 @@ $ docker build -t countingup/filebeat-logzio .
 ## Run (will pull from dockerhub)
 
 ```
-$ docker run --v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/docker/containers:/var/lib/docker/containers -e'LOGZIO_TOKEN=<token goes here>' countingup/filebeat-logzio
+$ docker run -v /var/run/docker.sock:/var/run/docker.sock \
+             -v /var/lib/docker/containers:/var/lib/docker/containers \
+             -v /var/log:/var/log \
+             -e'LOGZIO_TOKEN=<token goes here>' \
+             countingup/filebeat-logzio
 ```
