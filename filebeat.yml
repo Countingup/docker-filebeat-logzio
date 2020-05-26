@@ -37,4 +37,4 @@ logging.level: warning
 
 output.logstash:
   hosts: ["listener-eu.logz.io:5015"]
-  ssl.certificate_authorities: ['/usr/share/filebeat/COMODORSADomainValidationSecureServerCA.crt']
+  ssl.certificate_authorities: ['/usr/share/filebeat/Logzio_CA_Root.crt']
