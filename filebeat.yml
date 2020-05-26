@@ -36,5 +36,5 @@ filebeat.prospectors:
 logging.level: warning
 
 output.logstash:
-  hosts: ["listener-eu-catest.logz.io:5015"]
+  hosts: ["listener-eu.logz.io:5015"]
   ssl.certificate_authorities: ['/usr/share/filebeat/Logzio_CA_Root.crt']
