@@ -5,13 +5,16 @@ COPY filebeat.yml /usr/share/filebeat/filebeat.yml
 
 USER root
 
-# Set permissions
-RUN chgrp filebeat /usr/share/filebeat/filebeat.yml
+# Update base image packages, as this was missed in Elastic's CI
+# See https://github.com/elastic/beats/issues/25886
+RUN yum -y update && \
+    yum clean all && \
+    rm -rf /var/cache/yum
 
-# Get Logz.io CA cert, updated for CA change, see https://docs.logz.io/technical-notes/chain-of-trust/#replace-the-cert-file
-RUN curl https://raw.githubusercontent.com/logzio/public-certificates/master/TrustExternalCARoot_and_USERTrustRSAAAACA.crt -o /usr/share/filebeat/Logzio_CA_Root.crt
-
-# Set permissions
-RUN chgrp filebeat /usr/share/filebeat/Logzio_CA_Root.crt
+# Set permissions on filebeat config
+# Get Logz.io CA cert, updated for CA change, see https://docs.logz.io/technical-notes/chain-of-trust/#replace-the-cert-file and set perms
+RUN chgrp filebeat /usr/share/filebeat/filebeat.yml && \
+    curl https://raw.githubusercontent.com/logzio/public-certificates/master/TrustExternalCARoot_and_USERTrustRSAAAACA.crt -o /usr/share/filebeat/Logzio_CA_Root.crt && \
+    chgrp filebeat /usr/share/filebeat/Logzio_CA_Root.crt
 
 # Stay as root so we can read logs in /var/lib/docker/containers/*/*.log
