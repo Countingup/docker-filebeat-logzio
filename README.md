@@ -1,6 +1,6 @@
 # filebeat-logzio
 
-[![Docker Automated build](https://img.shields.io/docker/build/countingup/filebeat-logzio.svg)](https://hub.docker.com/r/countingup/filebeat-logzio/builds/)
+[![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/countingup/filebeat-logzio.svg)](https://hub.docker.com/r/countingup/filebeat-logzio/builds/) ![Docker Image Size](https://img.shields.io/docker/image-size/countingup/filebeat-logzio/latest)
 
 > WARNING
 >
