@@ -1,5 +1,7 @@
 FROM docker.elastic.co/beats/filebeat-oss:6.8.16
 
+LABEL org.opencontainers.image.source="https://github.com/Countingup/docker-filebeat-logzio"
+
 # Add custom filebeat config
 COPY filebeat.yml /usr/share/filebeat/filebeat.yml
 
