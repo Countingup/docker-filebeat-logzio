@@ -11,9 +11,10 @@ RUN yum -y update && \
     yum clean all && \
     rm -rf /var/cache/yum
 
-# Set permissions on filebeat config
+# Set permissions on filebeat config, see https://www.elastic.co/guide/en/beats/libbeat/6.8/config-file-permissions.html
 # Get Logz.io CA cert, updated for CA change, see https://docs.logz.io/technical-notes/chain-of-trust/#replace-the-cert-file and set perms
 RUN chgrp filebeat /usr/share/filebeat/filebeat.yml && \
+    chmod go-w /usr/share/filebeat/filebeat.yml && \
     curl https://raw.githubusercontent.com/logzio/public-certificates/master/TrustExternalCARoot_and_USERTrustRSAAAACA.crt -o /usr/share/filebeat/Logzio_CA_Root.crt && \
     chgrp filebeat /usr/share/filebeat/Logzio_CA_Root.crt
 
